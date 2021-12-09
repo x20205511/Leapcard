@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<center><h3>Hello, {{ firstname }}! Your card number is {{ card.cardnum }} </h3></center>
+<br>
+<div class="container">
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Email address</th>
+          <th scope="col">Card Number</th>
+          <th scope="col">Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{ current_user.firstname }}</th>
+          <td>{{ current_user.lastname }}</td>
+          <td>{{ current_user.email }}</td>
+          <td>{{ card.cardnum }}</td>
+          <td>{{ card.balance }}</td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+
+<div>
+    <form method = "POST" action ="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-top mb-4">Update Balance</legend>
+            
+            {{form.amount.label(class="form-control-label")}}
+                {% if form.amount.errors %}
+                {{ form.amount(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.amount.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.amount(class="form-control form-control-lg") }}
+            {% endif %}
+
+            {{form.add_submit(class="btn btn-success ")}} <br>
+            {{form.withdraw_submit(class="btn btn-danger")}}
+            </form>
+</div>
+
+{%endblock content %}

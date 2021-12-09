@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-md-6">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {%if messages%}
+                {%for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {%endfor%}
+            {%endif%}
+        {%endwith%}
+    </div>
+    <form method = "POST" action ="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-top mb-4">Application Form</legend>
+
+             {{form.email.label(class="form-control-label")}}
+                {% if form.email.errors %}
+                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.email(class="form-control form-control-lg") }}
+            {% endif %}
+            
+            {{form.balance.label(class="form-control-label")}}
+                {% if form.balance.errors %}
+                {{ form.balance(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.balance.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.balance(class="form-control form-control-lg") }}
+            {% endif %}
+
+
+                {{form.submit(class="btn btn-outline-info")}}
+
+        </fieldset>
+</form>
+</div>
+{% endblock content %}
