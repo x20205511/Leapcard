@@ -1,10 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<center><h3>Hello, {{ firstname }}! Your card number is {{ card.cardnum }} </h3></center>
+<h3 style="text-align:center">Hello, {{ firstname }}! Your card number is {{ card.cardnum }} </h3></style>
 <br>
 <div class="container">
 <table class="table table-striped">
+  <caption style="text-align: center;">Above table refers to your card details</caption>
     <thead>
         <tr>
           <th scope="col">First Name</th>
