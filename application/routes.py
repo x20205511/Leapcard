@@ -7,12 +7,8 @@ from application.models import User, Card
 from flask_login import login_user, current_user, logout_user, login_required
 
 
-@application.route("/")
-def welcome():
-    
-    return "Welcome"
-
 @application.route("/home")
+@login_required
 def home():
     currentcard = Card.query.filter_by(user_id= current_user.id).first() 
     return render_template("home.html",card=currentcard)
@@ -21,7 +17,7 @@ def home():
 def error():
     return "Server error occureed"
 
-@application.route("/login", methods=['GET', 'POST'])
+@application.route("/", methods=['GET', 'POST'])
 def login():
     try:
         if current_user.is_authenticated:
@@ -32,8 +28,9 @@ def login():
             if user and bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
                 print(current_user)
-                next_page = request.args.get('next')
-                return redirect(next_page) if next_page else redirect(url_for('home'))
+                # next_page = request.args.get('next')
+                # return redirect(next_page) if next_page else 
+                redirect(url_for('home'))
             else:
                 flash('Login failed. Please check credentials', 'danger')
     except:
@@ -74,12 +71,10 @@ def carddetails():
     form = UpdateForm()
     currentcard = Card.query.filter_by(user_id= current_user.id).first()
     if form.add_submit.data:
-        print("haadded")
         currentcard.balance += form.amount.data
         db.session.commit()
         redirect(url_for('carddetails'))
     if form.withdraw_submit.data:
-        print("withdrawnn")
         currentcard.balance -= form.amount.data
         db.session.commit()
 
@@ -95,7 +90,7 @@ def logout():
 @application.route("/deleteaccount")
 def deleteaccount():
     user = User.query.filter_by(id= current_user.get_id()).first()
-    currentcard = Card.query.filter_by(user_id= current_user.id).first() 
+    currentcard = Card.query.filter_by(user_id= current_user.id).first() #To retrieve the current card number of the current user
     logout()
     db.session.delete(currentcard)
     db.session.delete(user)

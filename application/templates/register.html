@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
    {% block content %} 
-    <div class="container">
+    <div class="container col-md-3">
+
         <div class="col-md-6">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {%if messages%}
@@ -15,7 +16,7 @@
         <form method = "POST" action ="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-top mb-4">Register now!!!</legend>
+                <legend class="border-top mb-4 text-center"><h3>Register now!!!</h3></legend>
                     {{form.firstname.label(class="form-control-label")}}
                     {{form.firstname(class="form-control form-control-lg")}}
 
@@ -66,9 +67,9 @@
                             {{ form.confirm_password(class="form-control form-control-lg") }}
                         {% endif %}
                 
-                    {{form.submit(class="btn btn-outline-info")}}
+                    {{form.submit(class="btn btn-outline-info my-3")}}
 
-                    <small class="text-muted">
+                    <small class="text-muted mx-1">
                         Already have an account? <a  target="_blank" class="ml-2" href ="{{ url_for('login') }}">Sign In</a>
                     </small>
 

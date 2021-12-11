@@ -36,25 +36,58 @@
             {%endif%}
         {%endwith%}
     </div>
-    <div>
+    <div class="container my-5">
     <center>
-    <h1>Welcome to the Leap Card site Home! {{ current_user.email }}</h1></center> <br><br><br><center>
+    <h2>Welcome to the Leap Card site Home! {{ current_user.email }}</h2></center> <br><br><br></center>
     {% if card %}
-    <h3>View your card details her</h3> <br> <button type="button" class="btn btn-outline-warning"><a style="text-decoration: none; color:#000" href ="{{ url_for('carddetails') }}">My Leap Card</a></button><br>
-    <h3>I dont want to use leap card</h3> <br> <button type="button" class="btn btn-outline-danger"><a  style="text-decoration: none; color:#000"href ="{{ url_for('deleteaccount') }}">Delete my Account</a></button>
-    {% else %}
-    <h3>The Leap Card is a suitable way for transactions for transportations in Dublin and other areas.</h3><h4>Apply for Leap card here</h4> <br> <button type="button" class="btn btn-outline-primary"><a style="text-decoration: none; color:#000"href ="{{ url_for('apply') }}">Apply</a></button>
-    {% endif %}
-</center>
+    <div class="my-5 d-flex align-items-center justify-content-around">
+    <div class="card" style="width:20rem; ">
+        <div class="card-body">
+          <h5 class="card-title">View your card details here</h5>
+          
+          <button type="button" class="btn btn-outline-warning">
+            <a style="text-decoration: none; color:#000" href ="{{ url_for('carddetails') }}">My Leap Card</a>
+        </button>
+        </div>
+      </div>
+      <div class="card d-flex justify-content-center align-items-center" style="width: 20rem;">
+        <div class="card-body">
+          <h5 class="card-title">I dont want to use leap card</h5>
+          
+          <button type="button" class="btn btn-outline-danger"><a  style="text-decoration: none; color:#000"href ="{{ url_for('deleteaccount') }}">Delete my Account</a></button>
+        </div>
+      </div>
     </div>
+    <!-- <h4>View your card details here <button type="button" class="btn btn-outline-warning">
+        <a style="text-decoration: none; color:#000" href ="{{ url_for('carddetails') }}">My Leap Card</a>
+    </button>
+    </h4>
+    <br>
+    <h4>I dont want to use leap card</h4> <button type="button" class="btn btn-outline-danger"><a  style="text-decoration: none; color:#000"href ="{{ url_for('deleteaccount') }}">Delete my Account</a></button> -->
+    {% else %}
+    
+
+    <h3>The Leap Card is a suitable way for transactions for transportations in Dublin and other areas.</h3>
+    <div class="my-5 d-flex justify-content-center">
+    <div class="card" style="width: 20rem;">
+        <div class="card-body">
+          <h5 class="card-title">Apply for leap card here</h5>  <button type="button" class="btn btn-outline-primary"><a style="text-decoration: none; color:#000"href ="{{ url_for('apply') }}">Apply</a></button>
+        </div>
+    </div>
+</div>
+    
+    {% endif %}
+
+    </div>
+    <!-- <img src="static/s1.jpg" height=20/> -->
 <br><br><br><br><br><br><br><br>
-<!-- <div class="card" style="width: 18rem;">
-  <img src="s1.jpg" class="card-img-top" alt="...">
+<div class="card" style="width: 18rem;">
+  <img src="static/s1.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
-</div> -->
+</div>
 
  {% endblock content %}
  <!-- JavaScript Bundle with Popper -->
