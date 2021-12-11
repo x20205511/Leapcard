@@ -27,10 +27,10 @@ def login():
             user = User.query.filter_by(email=form.email.data).first()
             if user and bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
-                print(current_user)
+                # print(current_user)
                 # next_page = request.args.get('next')
                 # return redirect(next_page) if next_page else 
-                redirect(url_for('home'))
+                return redirect(url_for('home'))
             else:
                 flash('Login failed. Please check credentials', 'danger')
     except:
@@ -60,7 +60,7 @@ def apply():
         print(card)
         db.session.add(card)
         db.session.commit()
-        currentcard = Card.query.filter_by(user_id= current_user.id).first() 
+        # currentcard = Card.query.filter_by(user_id= current_user.id).first() 
         # flash(f'The card number is generated for {currentcard.cardnum}!')
         return redirect(url_for('carddetails'))
     return render_template("apply.html", form = form)
@@ -77,9 +77,6 @@ def carddetails():
     if form.withdraw_submit.data:
         currentcard.balance -= form.amount.data
         db.session.commit()
-
-
-
     return render_template("carddetails.html", firstname = current_user.firstname, card = currentcard, form = form)
 
 @application.route("/logout")
@@ -97,3 +94,7 @@ def deleteaccount():
     db.session.commit()
     flash('The account has been deleted. We will miss you on Leap Card site.', 'danger')
     return redirect(url_for("login"))
+
+@application.route("/about")
+def about():
+    return render_template("about.html")

@@ -12,6 +12,7 @@
             {%endif%}
         {%endwith%}
     </div>
+    <div class="container d-flex justify-content-center">
     <form method = "POST" action ="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
@@ -41,7 +42,7 @@
                 {{ form.balance(class="form-control form-control-lg") }}
             {% endif %}
 
-
+                <br>
                 {{form.submit(class="btn btn-outline-info")}}
 
         </fieldset>
