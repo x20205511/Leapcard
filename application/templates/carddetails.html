@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h3 style="text-align:center">Hello, {{ firstname }}! Your card number is {{ card.cardnum }} </h3></style>
+<!-- The below line will display the first name of the current user along with the recently generated card number. -->
+<h3 style="text-align:center">Hello, {{ firstname }}! Your card number is {{ card.cardnum }} </h3></style> 
 <br>
 <div class="container">
 <table class="table table-striped">
@@ -17,7 +18,7 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">{{ current_user.firstname }}</th>
+          <th scope="row">{{ current_user.firstname }}</th> 
           <td>{{ current_user.lastname }}</td>
           <td>{{ current_user.email }}</td>
           <td>{{ card.cardnum }}</td>
@@ -27,6 +28,7 @@
   </table>
 </div>
 
+<!-- Displaying the Update Details - Add or Withdraw balance section -->
 <div class="container d-flex justify-content-center">
     <form method = "POST" action ="">
         {{ form.hidden_tag() }}
